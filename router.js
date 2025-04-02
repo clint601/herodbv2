@@ -24,5 +24,19 @@ router.get('/home', (req, res)=> {
 })
 
 
+router.get('/heroes', (req, res)=> {
+
+})
+
+// error page
+router.get('*', (req, res)=> {
+    if (req.url == '/favicon.ico/'){
+        res.end()
+    } else {
+        res.send('<h1>404 error,</h1>')
+    }
+})
+
+
 // 2. export router
 module.exports = router
