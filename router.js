@@ -43,12 +43,17 @@ router.get('/hero', (req, res)=> {
 
 router.get('/hero/:id', (req, res)=> {
     const id = req.params.id
-    const url `http://localhost:${port}/api/hero/${id}`
+
+    const url = `http://localhost:${port}/api/hero/${id}`
 
     fetch(url)
     .then(res => res.json())
     .then(data => {
-        
+        res.render('pages/heroSingle', {
+            title: data.hero_name,
+            name: data.hero_name,
+            data
+        })
     })
 })
 
