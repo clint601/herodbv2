@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+<main class="main" id="heroMain">
+    <div class="container">
+        <div class="row">
+            <% data.forEach(item => { %>
+            <div class="col-md-2">
+                <figure class="figure">
+                    <img src="https://placehold.co/200x500"alt="placeholder img" class="img-fluid image" />
+                    <figcaption class="figcaption"><%= item.hero_name %> </figcaption>
+                </figure>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer') %>

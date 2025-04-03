@@ -4,7 +4,7 @@ const router = express.Router()
 
 
 // 3. create a fetch
-const fetch = (...arrs)=> import('node-fetch').then(({ default: fetch})=> fetch(...args))
+const fetch = (...args)=> import('node-fetch').then(({ default: fetch})=> fetch(...args))
 
 
 //4. create port
@@ -24,18 +24,42 @@ router.get('/home', (req, res)=> {
 })
 
 
-router.get('/heroes', (req, res)=> {
+router.get('/hero', (req, res)=> {
+    const url = `http://localhost:${port}/api/hero`
 
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            res.render('pages/hero', {
+                title: 'all heroes',
+                name: 'all heroes',
+                data
+            })
+        })
+})
+
+
+// single pages
+
+router.get('/hero/:id', (req, res)=> {
+    const id = req.params.id
+    const url `http://localhost:${port}/api/hero/${id}`
+
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {
+        
+    })
 })
 
 // error page
-router.get('*', (req, res)=> {
-    if (req.url == '/favicon.ico/'){
-        res.end()
-    } else {
-        res.send('<h1>404 error,</h1>')
-    }
-})
+// router.get('*', (req, res)=> {
+//     if (req.url == '/favicon.ico/'){
+//         res.end()
+//     } else {
+//         res.send('<h1>404 error,</h1>')
+//     }
+// })
 
 
 // 2. export router
